@@ -1,0 +1,115 @@
+#! /usr/local/iverilog/bin/vvp
+:ivl_version "11.0 (devel)" "(s20150603-642-g3bdb50da)";
+:ivl_delay_selection "TYPICAL";
+:vpi_time_precision - 12;
+:vpi_module "system";
+:vpi_module "vhdl_sys";
+:vpi_module "vhdl_textio";
+:vpi_module "v2005_math";
+:vpi_module "va_math";
+:vpi_module "v2009";
+S_00000000010c5c70 .scope package, "$unit" "$unit" 2 1;
+ .timescale 0 0;
+S_00000000010c5e00 .scope module, "addsub32_tb" "addsub32_tb" 3 3;
+ .timescale -9 -12;
+v00000000010d3b70_0 .var "A", 31 0;
+v00000000010d3670_0 .var "B", 31 0;
+v00000000010d2e50_0 .net "CarryOut", 0 0, L_00000000010d38f0;  1 drivers
+v00000000010d2db0_0 .var "SUB", 0 0;
+v00000000010d3210_0 .net "Y", 31 0, L_00000000010d3490;  1 drivers
+S_00000000001fd2b0 .scope module, "dut" "addsub32" 3 11, 4 1 0, S_00000000010c5e00;
+ .timescale 0 0;
+    .port_info 0 /INPUT 32 "A";
+    .port_info 1 /INPUT 32 "B";
+    .port_info 2 /INPUT 1 "SUB";
+    .port_info 3 /OUTPUT 32 "Y";
+    .port_info 4 /OUTPUT 1 "CarryOut";
+L_00000000001fb750 .functor XOR 32, v00000000010d3670_0, L_00000000010d3350, C4<00000000000000000000000000000000>, C4<00000000000000000000000000000000>;
+v00000000010c5f90_0 .net "A", 31 0, v00000000010d3b70_0;  1 drivers
+v00000000001fb970_0 .net "B", 31 0, v00000000010d3670_0;  1 drivers
+v00000000001fd440_0 .net "B_modified", 31 0, L_00000000001fb750;  1 drivers
+v00000000001fd4e0_0 .net "CarryOut", 0 0, L_00000000010d38f0;  alias, 1 drivers
+v00000000001fd580_0 .net "SUB", 0 0, v00000000010d2db0_0;  1 drivers
+v00000000001fd620_0 .net "Sum", 32 0, L_00000000010d2ef0;  1 drivers
+v00000000010d2cc0_0 .net "Y", 31 0, L_00000000010d3490;  alias, 1 drivers
+v00000000010d30d0_0 .net *"_s0", 31 0, L_00000000010d3350;  1 drivers
+v00000000010d3990_0 .net *"_s10", 32 0, L_00000000010d3710;  1 drivers
+v00000000010d3170_0 .net *"_s12", 32 0, L_00000000010d37b0;  1 drivers
+v00000000010d35d0_0 .net *"_s14", 32 0, L_00000000010d3850;  1 drivers
+L_00000000011260e8 .functor BUFT 1, C4<00000000000000000000000000000000>, C4<0>, C4<0>, C4<0>;
+v00000000010d3c10_0 .net *"_s17", 31 0, L_00000000011260e8;  1 drivers
+L_0000000001126058 .functor BUFT 1, C4<0>, C4<0>, C4<0>, C4<0>;
+v00000000010d32b0_0 .net/2u *"_s4", 0 0, L_0000000001126058;  1 drivers
+v00000000010d3ad0_0 .net *"_s6", 32 0, L_00000000010d33f0;  1 drivers
+L_00000000011260a0 .functor BUFT 1, C4<0>, C4<0>, C4<0>, C4<0>;
+v00000000010d3a30_0 .net/2u *"_s8", 0 0, L_00000000011260a0;  1 drivers
+LS_00000000010d3350_0_0 .concat [ 1 1 1 1], v00000000010d2db0_0, v00000000010d2db0_0, v00000000010d2db0_0, v00000000010d2db0_0;
+LS_00000000010d3350_0_4 .concat [ 1 1 1 1], v00000000010d2db0_0, v00000000010d2db0_0, v00000000010d2db0_0, v00000000010d2db0_0;
+LS_00000000010d3350_0_8 .concat [ 1 1 1 1], v00000000010d2db0_0, v00000000010d2db0_0, v00000000010d2db0_0, v00000000010d2db0_0;
+LS_00000000010d3350_0_12 .concat [ 1 1 1 1], v00000000010d2db0_0, v00000000010d2db0_0, v00000000010d2db0_0, v00000000010d2db0_0;
+LS_00000000010d3350_0_16 .concat [ 1 1 1 1], v00000000010d2db0_0, v00000000010d2db0_0, v00000000010d2db0_0, v00000000010d2db0_0;
+LS_00000000010d3350_0_20 .concat [ 1 1 1 1], v00000000010d2db0_0, v00000000010d2db0_0, v00000000010d2db0_0, v00000000010d2db0_0;
+LS_00000000010d3350_0_24 .concat [ 1 1 1 1], v00000000010d2db0_0, v00000000010d2db0_0, v00000000010d2db0_0, v00000000010d2db0_0;
+LS_00000000010d3350_0_28 .concat [ 1 1 1 1], v00000000010d2db0_0, v00000000010d2db0_0, v00000000010d2db0_0, v00000000010d2db0_0;
+LS_00000000010d3350_1_0 .concat [ 4 4 4 4], LS_00000000010d3350_0_0, LS_00000000010d3350_0_4, LS_00000000010d3350_0_8, LS_00000000010d3350_0_12;
+LS_00000000010d3350_1_4 .concat [ 4 4 4 4], LS_00000000010d3350_0_16, LS_00000000010d3350_0_20, LS_00000000010d3350_0_24, LS_00000000010d3350_0_28;
+L_00000000010d3350 .concat [ 16 16 0 0], LS_00000000010d3350_1_0, LS_00000000010d3350_1_4;
+L_00000000010d33f0 .concat [ 32 1 0 0], v00000000010d3b70_0, L_0000000001126058;
+L_00000000010d3710 .concat [ 32 1 0 0], L_00000000001fb750, L_00000000011260a0;
+L_00000000010d37b0 .arith/sum 33, L_00000000010d33f0, L_00000000010d3710;
+L_00000000010d3850 .concat [ 1 32 0 0], v00000000010d2db0_0, L_00000000011260e8;
+L_00000000010d2ef0 .arith/sum 33, L_00000000010d37b0, L_00000000010d3850;
+L_00000000010d3490 .part L_00000000010d2ef0, 0, 32;
+L_00000000010d38f0 .part L_00000000010d2ef0, 32, 1;
+    .scope S_00000000010c5e00;
+T_0 ;
+    %pushi/vec4 10, 0, 32;
+    %store/vec4 v00000000010d3b70_0, 0, 32;
+    %pushi/vec4 20, 0, 32;
+    %store/vec4 v00000000010d3670_0, 0, 32;
+    %pushi/vec4 0, 0, 1;
+    %store/vec4 v00000000010d2db0_0, 0, 1;
+    %delay 10000, 0;
+    %vpi_call/w 3 26 "$display", "ADD: A=%0d B=%0d Y=%0d Carry=%b", v00000000010d3b70_0, v00000000010d3670_0, v00000000010d3210_0, v00000000010d2e50_0 {0 0 0};
+    %pushi/vec4 100, 0, 32;
+    %store/vec4 v00000000010d3b70_0, 0, 32;
+    %pushi/vec4 200, 0, 32;
+    %store/vec4 v00000000010d3670_0, 0, 32;
+    %pushi/vec4 0, 0, 1;
+    %store/vec4 v00000000010d2db0_0, 0, 1;
+    %delay 10000, 0;
+    %vpi_call/w 3 34 "$display", "ADD: A=%0d B=%0d Y=%0d Carry=%b", v00000000010d3b70_0, v00000000010d3670_0, v00000000010d3210_0, v00000000010d2e50_0 {0 0 0};
+    %pushi/vec4 20, 0, 32;
+    %store/vec4 v00000000010d3b70_0, 0, 32;
+    %pushi/vec4 10, 0, 32;
+    %store/vec4 v00000000010d3670_0, 0, 32;
+    %pushi/vec4 1, 0, 1;
+    %store/vec4 v00000000010d2db0_0, 0, 1;
+    %delay 10000, 0;
+    %vpi_call/w 3 42 "$display", "SUB: A=%0d B=%0d Y=%0d Carry=%b", v00000000010d3b70_0, v00000000010d3670_0, v00000000010d3210_0, v00000000010d2e50_0 {0 0 0};
+    %pushi/vec4 100, 0, 32;
+    %store/vec4 v00000000010d3b70_0, 0, 32;
+    %pushi/vec4 75, 0, 32;
+    %store/vec4 v00000000010d3670_0, 0, 32;
+    %pushi/vec4 1, 0, 1;
+    %store/vec4 v00000000010d2db0_0, 0, 1;
+    %delay 10000, 0;
+    %vpi_call/w 3 50 "$display", "SUB: A=%0d B=%0d Y=%0d Carry=%b", v00000000010d3b70_0, v00000000010d3670_0, v00000000010d3210_0, v00000000010d2e50_0 {0 0 0};
+    %pushi/vec4 10, 0, 32;
+    %store/vec4 v00000000010d3b70_0, 0, 32;
+    %pushi/vec4 20, 0, 32;
+    %store/vec4 v00000000010d3670_0, 0, 32;
+    %pushi/vec4 1, 0, 1;
+    %store/vec4 v00000000010d2db0_0, 0, 1;
+    %delay 10000, 0;
+    %vpi_call/w 3 58 "$display", "SUB: A=%0d B=%0d Y=%h Carry=%b", v00000000010d3b70_0, v00000000010d3670_0, v00000000010d3210_0, v00000000010d2e50_0 {0 0 0};
+    %vpi_call/w 3 61 "$finish" {0 0 0};
+    %end;
+    .thread T_0;
+# The file index is used to find the file name in the following table.
+:file_names 5;
+    "N/A";
+    "<interactive>";
+    "-";
+    "tb/addsub32_tb.sv";
+    "src/addsub32.sv";
