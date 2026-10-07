@@ -1,0 +1,64 @@
+#! /usr/local/iverilog/bin/vvp
+:ivl_version "11.0 (devel)" "(s20150603-642-g3bdb50da)";
+:ivl_delay_selection "TYPICAL";
+:vpi_time_precision - 12;
+:vpi_module "system";
+:vpi_module "vhdl_sys";
+:vpi_module "vhdl_textio";
+:vpi_module "v2005_math";
+:vpi_module "va_math";
+:vpi_module "v2009";
+S_000000000127a6b0 .scope package, "$unit" "$unit" 2 1;
+ .timescale 0 0;
+S_00000000010e5ae0 .scope module, "adder32_tb" "adder32_tb" 3 3;
+ .timescale -12 -12;
+v0000000001279bc0_0 .var "A", 31 0;
+v000000000127b5a0_0 .var "B", 31 0;
+v000000000127b640_0 .net "Y", 31 0, L_000000000127b6e0;  1 drivers
+S_00000000010e5c70 .scope module, "dut" "adder32" 3 9, 4 1 0, S_00000000010e5ae0;
+ .timescale 0 0;
+    .port_info 0 /INPUT 32 "A";
+    .port_info 1 /INPUT 32 "B";
+    .port_info 2 /OUTPUT 32 "Y";
+v000000000127a840_0 .net "A", 31 0, v0000000001279bc0_0;  1 drivers
+v00000000010e5e00_0 .net "B", 31 0, v000000000127b5a0_0;  1 drivers
+v0000000001279b20_0 .net "Y", 31 0, L_000000000127b6e0;  alias, 1 drivers
+L_000000000127b6e0 .arith/sum 32, v0000000001279bc0_0, v000000000127b5a0_0;
+    .scope S_00000000010e5ae0;
+T_0 ;
+    %vpi_call/w 3 18 "$dumpfile", "wave/adder32.vcd" {0 0 0};
+    %vpi_call/w 3 19 "$dumpvars", 32'sb00000000000000000000000000000000, S_00000000010e5ae0 {0 0 0};
+    %pushi/vec4 10, 0, 32;
+    %store/vec4 v0000000001279bc0_0, 0, 32;
+    %pushi/vec4 15, 0, 32;
+    %store/vec4 v000000000127b5a0_0, 0, 32;
+    %delay 10, 0;
+    %vpi_call/w 3 26 "$display", "A=%0d B=%0d Y=%0d", v0000000001279bc0_0, v000000000127b5a0_0, v000000000127b640_0 {0 0 0};
+    %pushi/vec4 30, 0, 32;
+    %store/vec4 v0000000001279bc0_0, 0, 32;
+    %pushi/vec4 161, 0, 32;
+    %store/vec4 v000000000127b5a0_0, 0, 32;
+    %delay 10, 0;
+    %vpi_call/w 3 34 "$display", "A=%0d B=%0d Y=%0d", v0000000001279bc0_0, v000000000127b5a0_0, v000000000127b640_0 {0 0 0};
+    %pushi/vec4 5, 0, 32;
+    %store/vec4 v0000000001279bc0_0, 0, 32;
+    %pushi/vec4 2, 0, 32;
+    %store/vec4 v000000000127b5a0_0, 0, 32;
+    %delay 10, 0;
+    %vpi_call/w 3 42 "$display", "A=%0d B=%0d Y=%0d", v0000000001279bc0_0, v000000000127b5a0_0, v000000000127b640_0 {0 0 0};
+    %pushi/vec4 128, 0, 32;
+    %store/vec4 v0000000001279bc0_0, 0, 32;
+    %pushi/vec4 287, 0, 32;
+    %store/vec4 v000000000127b5a0_0, 0, 32;
+    %delay 10, 0;
+    %vpi_call/w 3 50 "$display", "A=%0d B=%0d Y=%0d", v0000000001279bc0_0, v000000000127b5a0_0, v000000000127b640_0 {0 0 0};
+    %vpi_call/w 3 52 "$finish" {0 0 0};
+    %end;
+    .thread T_0;
+# The file index is used to find the file name in the following table.
+:file_names 5;
+    "N/A";
+    "<interactive>";
+    "-";
+    "tb/adder32_tb.sv";
+    "src/adder32.sv";
