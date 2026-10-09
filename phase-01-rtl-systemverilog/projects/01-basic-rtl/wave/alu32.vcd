@@ -1,0 +1,70 @@
+$date
+	Thu Oct 08 04:57:09 2026
+$end
+$version
+	Icarus Verilog
+$end
+$timescale
+	1ps
+$end
+$scope module alu32_tb $end
+$var wire 32 ! Y [31:0] $end
+$var reg 32 " A [31:0] $end
+$var reg 3 # ALUControl [2:0] $end
+$var reg 32 $ B [31:0] $end
+$scope module dut $end
+$var wire 32 % A [31:0] $end
+$var wire 3 & ALUControl [2:0] $end
+$var wire 32 ' AndResult [31:0] $end
+$var wire 32 ( B [31:0] $end
+$var wire 32 ) OrResult [31:0] $end
+$var wire 32 * XorResult [31:0] $end
+$var wire 32 + SubResult [31:0] $end
+$var wire 32 , AddResult [31:0] $end
+$var reg 32 - Y [31:0] $end
+$upscope $end
+$upscope $end
+$enddefinitions $end
+#0
+$dumpvars
+b11110 -
+b11110 ,
+b1010 +
+b11110 *
+b11110 )
+b1010 (
+b0 '
+b0 &
+b10100 %
+b1010 $
+b0 #
+b10100 "
+b11110 !
+$end
+#10000
+b1010 !
+b1010 -
+b1 #
+b1 &
+#20000
+b11111111111111111111111111111111 )
+b11111111111111111111111111111111 *
+b0 !
+b0 -
+b10 #
+b10 &
+b1010101010101010101010101010101 $
+b1010101010101010101010101010101 (
+b11111111111111111111111111111111 ,
+b1010101010101010101010101010101 +
+b10101010101010101010101010101010 "
+b10101010101010101010101010101010 %
+#30000
+b11111111111111111111111111111111 !
+b11111111111111111111111111111111 -
+b11 #
+b11 &
+#40000
+b100 #
+b100 &
+#50000

@@ -10,7 +10,6 @@ module or_gate_tb;
         .Y(Y)
     );
 
-
     initial begin 
         $dumpfile("wave/or_gate.vcd");
         $dumpvars(0, or_gate_tb);
