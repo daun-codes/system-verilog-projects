@@ -36,7 +36,7 @@ module alu32_flags_tb;
 
         #10
 
-        $display("SUB: A=%0d B=%0d Y=%0d zero=%h", A, B, Y, Zero);
+        $display("SUB: A=%0d B=%0d Y=%h zero=%b", A, B, Y, Zero);
 
         A = 32'hAAAAAAAA;
         B = 32'h55555555;
