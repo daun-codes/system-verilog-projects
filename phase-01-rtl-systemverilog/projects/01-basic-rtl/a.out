@@ -1,0 +1,109 @@
+
+`timescale 1ns/1ps
+
+module processor_core_tb;
+
+    logic clk, reset, start;
+
+    logic [4:0] ReadAddr1, ReadAddr2, WriteAddr;
+    logic [31:0] ExternalData;
+    logic [2:0] ALUControl;
+    logic WritebackSelect;
+
+    logic [31:0] ALUResult;
+    logic Zero;
+    logic fetch, decode, execute, writeback, RegWrite;
+
+    processor_core dut (
+        .clk(clk),
+        .reset(reset),
+        .start(start),
+        .ReadAddr1(ReadAddr1),
+        .ReadAddr2(ReadAddr2),
+        .WriteAddr(WriteAddr),
+        .ExternalData(ExternalData),
+        .ALUControl(ALUControl),
+        .WritebackSelect(WritebackSelect),
+        .ALUResult(ALUResult),
+        .Zero(Zero),
+        .fetch(fetch),
+        .decode(decode),
+        .execute(execute),
+        .writeback(writeback),
+        .RegWrite(RegWrite)
+    );
+
+    always #5 clk = ~clk;
+
+    // Run one transaction through the controller
+    task automatic run_transaction;
+        begin
+            @(negedge clk);
+            start = 1;
+
+            @(negedge clk);
+            start = 0;
+
+            wait (writeback == 1'b1);
+            @(posedge clk);
+            #1;
+        end
+    endtask
+
+    initial begin
+        clk = 0;
+        reset = 1;
+        start = 0;
+
+        ReadAddr1 = 0;
+        ReadAddr2 = 0;
+        WriteAddr = 0;
+        ExternalData = 0;
+        ALUControl = 3'b000;
+        WritebackSelect = 0;
+
+        $dumpfile("wave/processor_core.vcd");
+        $dumpvars(0, processor_core_tb);
+
+        // Reset
+        repeat (2) @(posedge clk);
+        #1;
+        $display("Reset: FETCH=%b RegWrite=%b", fetch, RegWrite);
+
+        @(negedge clk);
+        reset = 0;
+
+        // Transaction 1: R1 = 10
+        WriteAddr = 1;
+        ExternalData = 10;
+        WritebackSelect = 0;
+        run_transaction();
+        $display("Load R1 = 10 complete");
+
+        // Transaction 2: R2 = 20
+        WriteAddr = 2;
+        ExternalData = 20;
+        run_transaction();
+        $display("Load R2 = 20 complete");
+
+        // Transaction 3: R3 = R1 + R2
+        ReadAddr1 = 1;
+        ReadAddr2 = 2;
+        WriteAddr = 3;
+        ALUControl = 3'b000;
+        WritebackSelect = 1;
+        run_transaction();
+
+        $display("ALU result = %0d (expected 30)", ALUResult);
+        $display("Zero = %b (expected 0)", Zero);
+        $display("R3 writeback complete");
+
+        if (ALUResult === 32'd30)
+            $display("PASS: ALU addition is correct");
+        else
+            $display("FAIL: ALU result is incorrect");
+
+        $finish;
+    end
+
+endmodule
