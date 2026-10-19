@@ -94,14 +94,59 @@ module processor_core_tb;
         WritebackSelect = 1;
         run_transaction;
 
+        // Verify that R3 stores the result
+        ReadAddr1 = 3;
+        ReadAddr2 = 0;
+        #1;
+
         $display("ALU result = %0d (expected 30)", ALUResult);
         $display("Zero = %b (expected 0)", Zero);
-        $display("R3 writeback complete");
+        $display("R3 stored value = %0d (expected 30)",
+                dut.datapath.rf.ReadData1);
 
-        if (ALUResult === 32'd30)
-            $display("PASS: ALU addition is correct");
+        if (dut.datapath.rf.ReadData1 === 32'd30)
+            $display("PASS: R3 correctly stores 30");
         else
-            $display("FAIL: ALU result is incorrect");
+            $display("FAIL: R3 does not contain 30");
+
+        // Transaction 4: Load external data into R4
+        WriteAddr = 4;
+        ExternalData = 42;
+        WritebackSelect = 0;
+
+        run_transaction;
+
+        // Verify R4 contains 42
+        ReadAddr1 = 4;
+        #1;
+
+        $display("R4 stored value = %0d (expected 42)",
+                 dut.datapath.rf.ReadData1);
+
+        if (dut.datapath.rf.ReadData1 === 32'd42)
+            $display("PASS: ExternalData write-back works");
+        else
+            $display("FAIL: ExternalData write-back is incorrect");
+
+
+
+        WriteAddr = 0;
+        ExternalData = 99;
+        WritebackSelect = 0;
+
+        run_transaction;
+
+        ReadAddr1 = 0;
+
+        #1;
+
+        $display("R0 stored value = %0d (expected 0)",
+                 dut.datapath.rf.ReadData1);
+
+        if (dut.datapath.rf.ReadData1 === 32'd00)
+            $display("PASS: R0 remains zero");
+        else 
+            $display("FAIL: R0 is not zero");
 
         $finish;
     end
